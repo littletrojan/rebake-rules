@@ -36,6 +36,11 @@
       "pattern": "^[a-z][a-z0-9-]*$",
       "description": "Primary grouping axis for Rebake's validation panel. Every warning that rules in this pack fire inherits this category. Open vocabulary — common values: 'ifc', 'building-code', 'sustainability', 'structural', 'accessibility'. Missing or unspecified is legal for back-compat with v1.0 packs; consumers default to 'ifc' in that case."
     },
+    "severity": {
+      "type": "string",
+      "enum": ["error", "warning", "info"],
+      "description": "Pack-level default severity for every warning this pack's rules fire. Individual rules (e.g., allowlist rows) may override with their own `severity` field. Missing falls back to the engine default 'warning'. Use 'error' for hard-stop rules (permit blockers, code violations); 'warning' for soft issues; 'info' for advisory hints."
+    },
     "allowlist": {
       "type": "array",
       "description": "One entry per element kind. Each entry says which IFC entity class strings are accepted on elements of that kind.",
@@ -58,6 +63,11 @@
               "pattern": "^Ifc[A-Z][A-Za-z0-9]*$"
             },
             "description": "IFC 4.3 entity class names accepted for this element kind. Must start with `Ifc` followed by PascalCase."
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["error", "warning", "info"],
+            "description": "Per-row severity override. Takes precedence over the pack-level `severity`. Use when one element kind needs a stricter (or softer) level than the rest of the pack — e.g. a building-code pack that's mostly 'error' but softens space-class checks to 'warning'."
           }
         }
       }
