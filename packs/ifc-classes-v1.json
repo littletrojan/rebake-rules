@@ -1,9 +1,10 @@
 {
   "schema_version": 1,
   "id": "rebake-builtin-ifc-classes",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "Rebake built-in IFC classes (v1)",
   "description": "Allowlist of valid IFC 4.3 entity classes per Rebake element kind. The default rule pack shipped with Rebake. Adding a class is a one-line edit; bump version on any change.",
+  "category": "ifc",
   "allowlist": [
     {
       "applies_to": "wall",
